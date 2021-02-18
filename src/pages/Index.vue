@@ -1,13 +1,13 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page class="flex flex-center column">
     <div class="q-pa-md flex flex-center">
       <q-circular-progress
         show-value
         class="text-yellow q-ma-md"
         :value="countProgress"
         :thickness="0.2"
-        size="200px"
-        font-size="20px"
+        size="600px"
+        font-size="100px"
         color="light-blue"
         center-color="red"
         track-color="black"
@@ -18,8 +18,8 @@
 
     <div class="q-pa-md q-gutter-y-md column items-start">
       <q-btn-group>
-        <q-btn @click="startTimer()" :disable="counting" color="accent" icon="play_arrow" />
-        <q-btn @click="resetTimer()" color="accent" icon="replay" />
+        <q-btn @click="startTimer()" :disable="counting" :size="buttonSize" color="accent" icon="play_arrow" />
+        <q-btn @click="resetTimer()" :size="buttonSize" color="accent" icon="replay" />
       </q-btn-group>
     </div>
   </q-page>
@@ -34,8 +34,9 @@ export default {
       countProgress: 50,
 			defTime: 30,
 			countTime: '30:00',
-			interval: null,
-			counting: false
+			countInterval: null,
+			counting: false,
+      buttonSize: '30px'
     }
   },
   methods: {
@@ -46,7 +47,7 @@ export default {
 			var countDownDate = new Date().getTime() + 0.5 * 3600 * 1000;
 
 			// Update the count down every 1 second
-			this.interval = setInterval(() => {
+			this.countInterval = setInterval(() => {
 
 				// Get today's date and time
 				var now = new Date().getTime();
@@ -72,7 +73,7 @@ export default {
 			}, 1000);
     },
 		resetTimer() {
-			clearInterval(this.interval)
+			clearInterval(this.countInterval)
 			this.countTime = this.defTime + ':00'
 			this.countProgress = this.defProgress
 			this.counting = false
