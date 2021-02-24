@@ -68,6 +68,7 @@ export default {
 
 				// If the count down is over, write some text
 				if (distance < 0) {
+                    alert('Time is up!!')
 					resetTimer()
 				}
 			}, 1000);
