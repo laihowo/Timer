@@ -34,6 +34,7 @@ export default {
       countProgress: 0,
 			defTime: 30,
 			countTime: '',
+      pageTitle: '',
 			countInterval: null,
 			counting: false,
       buttonSize: '30px'
@@ -41,6 +42,7 @@ export default {
   },
   mounted() {
     this.countTime = this.defTime + ':00'
+    this.pageTitle = document.title
     this.countProgress = this.defProgress
   },
   methods: {
@@ -70,7 +72,7 @@ export default {
 				// Output the result
 				this.countTime = minutes + ':' + seconds
 				this.countProgress = distance / totalDistance * this.defProgress
-        document.title += ' ' + this.countTime
+        document.title = this.pageTitle + ' ' + this.countTime
 
 				// If the count down is over, write some text
 				if (distance < 0) {
@@ -84,7 +86,7 @@ export default {
 			this.countTime = this.defTime + ':00'
 			this.countProgress = this.defProgress
 			this.counting = false
-      document.title = document.title.split(' ', 1)
+      document.title = this.pageTitle
 		}
   }
 }
