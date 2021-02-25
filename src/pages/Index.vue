@@ -32,7 +32,7 @@ export default {
     return {
 			defProgress: 50,
       countProgress: 0,
-			defTime: 1,
+			defTime: 30,
 			countTime: '',
 			countInterval: null,
 			counting: false,
