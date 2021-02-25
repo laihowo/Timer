@@ -32,7 +32,7 @@ export default {
     return {
 			defProgress: 50,
       countProgress: 0,
-			defTime: 1,
+			defTime: 30,
 			countTime: '',
 			countInterval: null,
 			counting: false,
@@ -70,6 +70,7 @@ export default {
 				// Output the result
 				this.countTime = minutes + ':' + seconds
 				this.countProgress = distance / totalDistance * this.defProgress
+        document.title += ' ' + this.countTime
 
 				// If the count down is over, write some text
 				if (distance < 0) {
@@ -83,6 +84,7 @@ export default {
 			this.countTime = this.defTime + ':00'
 			this.countProgress = this.defProgress
 			this.counting = false
+      document.title = document.title.split(' ', 1)
 		}
   }
 }
