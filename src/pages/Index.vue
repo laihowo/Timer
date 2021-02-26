@@ -37,6 +37,7 @@ export default {
       pageTitle: '',
 			countInterval: null,
 			counting: false,
+      audio: null,
       buttonSize: '30px'
     }
   },
@@ -76,8 +77,8 @@ export default {
 
 				// If the count down is over, write some text
 				if (distance < 0) {
-          alert('Time is up!!')
           this.playSound('https://soundbible.com/mp3/large_waterfall_1-daniel_simon.mp3')
+          alert('Time is up!!')
 					this.resetTimer()
 				}
 			}, 1000);
@@ -88,14 +89,12 @@ export default {
 			this.countProgress = this.defProgress
 			this.counting = false
       document.title = this.pageTitle
+      this.audio.pause()
 		},
     playSound(sound) {
       if (sound) {
-        var audio = new Audio(sound)
-        audio.play()
-        setTimeout(() => {
-          audio.pause()
-        }, 2000)
+        this.audio = new Audio(sound)
+        this.audio.play()
       }
     }
   }
