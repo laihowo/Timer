@@ -93,6 +93,9 @@ export default {
       if (sound) {
         var audio = new Audio(sound)
         audio.play()
+        setTimeout(() => {
+          audio.pause()
+        }, 2000)
       }
     }
   }
