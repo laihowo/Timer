@@ -32,7 +32,7 @@ export default {
     return {
 			defProgress: 50,
       countProgress: 0,
-			defTime: 30,
+			defTime: 1,
 			countTime: '',
       pageTitle: '',
 			countInterval: null,
@@ -50,21 +50,21 @@ export default {
 			this.counting = true
 
 			// Set the date we're counting down to
-			var countDownDate = new Date().getTime() + this.defTime * 60 * 1000;
+			var countDownDate = new Date().getTime() + this.defTime * 60 * 1000
       var totalDistance = countDownDate - new Date().getTime()
 
 			// Update the count down every 1 second
 			this.countInterval = setInterval(() => {
 
 				// Get today's date and time
-				var now = new Date().getTime();
+				var now = new Date().getTime()
 
 				// Find the distance between now and the count down date
-				var distance = countDownDate - now;
+				var distance = countDownDate - now
 
 				// Time calculations for days, hours, minutes and seconds
-				var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-				var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+				var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+				var seconds = Math.floor((distance % (1000 * 60)) / 1000)
 				if (seconds < 10) {
 					seconds = '0' + seconds
 				}
@@ -77,6 +77,7 @@ export default {
 				// If the count down is over, write some text
 				if (distance < 0) {
           alert('Time is up!!')
+          this.playSound('https://soundbible.com/mp3/large_waterfall_1-daniel_simon.mp3')
 					this.resetTimer()
 				}
 			}, 1000);
@@ -87,7 +88,13 @@ export default {
 			this.countProgress = this.defProgress
 			this.counting = false
       document.title = this.pageTitle
-		}
+		},
+    playSound(sound) {
+      if (sound) {
+        var audio = new Audio(sound)
+        audio.play()
+      }
+    }
   }
 }
 </script>
